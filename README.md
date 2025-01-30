@@ -4,12 +4,6 @@
 </h1>
 
 
-<p align='center'>
-
-  &nbsp;
-  <a href="#"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Surajtiwari001/Badges4-README.md-Profile?style=for-the-badge" /></a>
-</p>
-<br />
 
 # Advance_Encryption_tools
 
@@ -23,7 +17,8 @@
 
 **BATCH DURATION** : 6 WEEKS
 
-**MENTOR NAME** : NEELA SANTOSH KUMAR  
+**MENTOR NAME** : NEELA SANTOSH KUMAR 
+
 
 
 This Python script provides basic file encryption and decryption functionality using the Fernet library.  It generates a symmetric encryption key and uses it to encrypt and decrypt files.
