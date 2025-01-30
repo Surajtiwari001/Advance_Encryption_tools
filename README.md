@@ -1,75 +1,61 @@
 # Advance_Encryption_tools
-import os
-from cryptography.fernet import Fernet
+# File Encryption Script
 
-def generate_key():
-    """
-    Generates a new encryption key and saves it to a file.
-    """
-    key = Fernet.generate_key()
-    with open("secret.key", "wb") as key_file:
-        key_file.write(key)
+This Python script provides basic file encryption and decryption functionality using the Fernet library.  It generates a symmetric encryption key and uses it to encrypt and decrypt files.
 
-def load_key():
-    """
-    Loads the encryption key from the "secret.key" file.
-    """
-    return open("secret.key", "rb").read()
+**WARNING:** This script is for educational purposes only and demonstrates basic encryption concepts.  It is **not secure enough for production use** due to its simple key management.  For real-world applications, use a robust Key Management System (KMS) and follow security best practices.  **Never use passwords directly for encryption.**
 
-def encrypt_file(filename, key):
-    """
-    Encrypts a file using the provided key.
-    """
-    f = Fernet(key)
-    with open(filename, "rb") as file:
-        file_data = file.read()
+## Features
 
-    encrypted_data = f.encrypt(file_data)
+* Generates a strong encryption key using `Fernet.generate_key()`.
+* Stores the key in a file named `secret.key`.  **In a real application, use a secure KMS.**
+* Encrypts files using the generated key.
+* Decrypts files using the same key.
+* Handles command-line arguments for encrypting or decrypting files.
 
-    with open(filename + ".encrypted", "wb") as file:
-        file.write(encrypted_data)
+## Usage
 
-    print(f"File encrypted: {filename}.encrypted")
+1.  **Clone the repository (or download the script):**
 
-def decrypt_file(filename, key):
-    """
-    Decrypts a file using the provided key.
-    """
-    f = Fernet(key)
-    with open(filename, "rb") as file:
-        encrypted_data = file.read()
+    ```bash
+    git clone [repository_url]
+    ```
 
-    try:
-        decrypted_data = f.decrypt(encrypted_data)
-    except Exception as e:  # Catch potential decryption errors
-        print(f"Decryption failed: {e}")
-        return
+2.  **Run the script:**
 
-    with open(filename[:-10], "wb") as file:  # Remove ".encrypted" extension
-        file.write(decrypted_data)
+    ```bash
+    python fileencrypt.py [encrypt/decrypt] [filename] [password]
+    ```
 
-    print(f"File decrypted: {filename[:-10]}")
+    *   `encrypt`: Encrypts the specified file.
+    *   `decrypt`: Decrypts the specified file.
+    *   `filename`: The path to the file to encrypt or decrypt.
+    *   `password`:  **This argument is currently a placeholder and is not used for encryption.**  See the important security note below.
 
+    **Example:**
 
-if __name__ == "__main__":
-    if not os.path.exists("secret.key"):
-        generate_key()
+    ```bash
+    python fileencrypt.py encrypt my_secret_document.txt mypassword
+    python fileencrypt.py decrypt my_secret_document.txt.encrypted mypassword
+    ```
 
-    key = load_key()
+## Security Notes (Important)
 
-    import sys
-    if len(sys.argv) == 4:
-        mode = sys.argv[1]
-        filename = sys.argv[2]
-        password = sys.argv[3]  # You are not using this for encryption in this example
+*   **Key Management:** The `secret.key` file is currently stored in the same directory as the script. This is **not secure** for production environments.  Use a proper KMS for real applications.
+*   **Password Handling:** The `password` argument is currently a placeholder and is **not used for encryption**.  **Never use passwords directly for encryption.**  Use a Key Derivation Function (KDF) like PBKDF2 to derive an encryption key from a password securely.
+*   **This script is for educational purposes only.**  Do not use it for encrypting sensitive data in a real-world application without consulting with a security expert and implementing proper security measures.
 
-        if mode == "encrypt":
-             encrypt_file(filename, key)
-        elif mode == "decrypt":
-            decrypt_file(filename, key)
-        else:
-            print("Invalid mode. Use 'encrypt' or 'decrypt'.")
-    else:
-        print("Usage: python fileencrypt.py [encrypt/decrypt] [filename] [password]")
-        print("Note: The password is not used in this simple example.")
-        print("It's best practice to use a strong key management system for real applications.")
+## Dependencies
+
+*   `cryptography` library:
+
+    ```bash
+    pip install cryptography
+    ```
+
+## Future Improvements
+
+*   Implement proper key derivation from a password using a KDF.
+*   Integrate with a secure Key Management System (KMS).
+*   Add more robust error handling.
+*   Improve security by following best practices for encryption and key management.
