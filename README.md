@@ -1,5 +1,30 @@
 # Advance_Encryption_tools
-# File Encryption Script
+<h1 align='center'>
+  Welcome! Task 4 README.md Profile
+</h1>
+
+
+<p align='center'>
+
+  &nbsp;
+  <a href="#"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Surajtiwari001/Badges4-README.md-Profile?style=for-the-badge" /></a>
+</p>
+<br />
+
+# Advance_Encryption_tools
+
+**COMPANY** : CODTECH IT-SOLUTION
+
+**NAME**  : SURAJ TIWARI
+
+**INTERN ID** : CT6WIVE
+
+**DOMAIN** : CYBERSECURITY
+
+**BATCH DURATION** : 6 WEEKS
+
+**MENTOR NAME** : NEELA SANTOSH KUMAR  
+
 
 This Python script provides basic file encryption and decryption functionality using the Fernet library.  It generates a symmetric encryption key and uses it to encrypt and decrypt files.
 
